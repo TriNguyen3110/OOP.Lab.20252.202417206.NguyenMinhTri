@@ -1,6 +1,6 @@
-package hust.soict.dsai.aims.cart;
+package hust.soict.globalict.aims.cart;
 
-import hust.soict.dsai.aims.disc.DigitalVideoDisc;
+import hust.soict.globalict.aims.disc.DigitalVideoDisc;
 
 public class Cart {
     public static final int MAX_CAPACITY = 20;
@@ -15,6 +15,30 @@ public class Cart {
         }
         else{
             System.out.println("The cart is almost full");
+        }
+    }
+
+    public void addDigitalVideoDisc(DigitalVideoDisc [] dvdList){
+        for(DigitalVideoDisc disc : dvdList){
+            if(qtyOrdered < MAX_CAPACITY){
+                myCart[qtyOrdered] = disc;
+                qtyOrdered ++;
+                System.out.println("The disc " + disc.getTitle() + " has been added.");
+            }
+            else{
+                System.out.println("The car is full. Cannot add: " + disc.getTitle());
+                break;
+            }
+        }
+    }
+
+    public void addDigitalVideoDisc(DigitalVideoDisc dvd1, DigitalVideoDisc dvd2){
+        if(qtyOrdered + 1 < MAX_CAPACITY){
+            addDigitalVideoDisc(dvd1);
+            addDigitalVideoDisc(dvd2);
+        }
+        else{
+            System.out.println("The cart is almost full. Cannot add both DVDs!");
         }
     }
 
