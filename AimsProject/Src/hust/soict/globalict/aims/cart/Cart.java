@@ -61,6 +61,34 @@ public class Cart {
         }
     }
 
+    public void searchById(int id){
+        boolean found = false;
+        for(int i = 0; i < qtyOrdered; i ++){
+            if(myCart[i].getID() == id){
+                System.out.println("Found DVD by ID " + id + ":");
+                System.out.println(myCart[i].getTitle() + "-" + myCart[i].getCategory() + "-" + myCart[i].getDirector() + "-" + myCart[i].getLength() + "-" + myCart[i].getCost() + "$");
+                found = true;
+            }
+        }
+        if (!found){
+            System.out.println("No DVD found with ID: " + id);
+        }
+    }
+
+    public void searchByTitle(String title){
+        boolean found = false;
+        for(int i = 0; i < qtyOrdered; i ++){
+            if(myCart[i].getTitle().equalsIgnoreCase(title)){
+                System.out.println("Found DVD by title " + title + ":");
+                System.out.println(myCart[i].getTitle() + "-" + myCart[i].getCategory() + "-" + myCart[i].getDirector() + "-" + myCart[i].getLength() + "-" + myCart[i].getCost() + "$");
+                found = true;
+            }
+        }
+        if (!found){
+            System.out.println("No DVD found with title " + title);
+        }
+    }
+
     public float totalCost(){
         float s = 0;
         for(int i = 0; i < qtyOrdered; i ++){
