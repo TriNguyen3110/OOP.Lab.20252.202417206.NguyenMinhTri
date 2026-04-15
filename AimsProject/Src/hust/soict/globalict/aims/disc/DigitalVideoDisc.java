@@ -1,4 +1,4 @@
-package hust.soict.dsai.aims.disc;
+package hust.soict.globalict.aims.disc;
 
 public class DigitalVideoDisc {
         private int id;
@@ -8,14 +8,18 @@ public class DigitalVideoDisc {
         private int length;
         private float cost;
 
+        private static int nbDigitalVideoDiscs = 0;
+
         public DigitalVideoDisc(String title){
             this.title = title;
+            updateID();
         }
 
         public DigitalVideoDisc(String category, String title, float cost){
             this.title = title;
             this.category = category;
             this.cost = cost;
+            updateID();
         }
 
         public DigitalVideoDisc(String director, String category, String title, float cost){
@@ -23,6 +27,7 @@ public class DigitalVideoDisc {
             this.category = category;
             this.title = title;
             this.cost = cost;
+            updateID();
         }
 
         public DigitalVideoDisc(String title, String category, String director, int length, float cost){
@@ -31,6 +36,12 @@ public class DigitalVideoDisc {
             this.director = director;
             this.length = length;
             this.cost = cost;
+            updateID();
+        }
+
+        private void updateID(){
+            nbDigitalVideoDiscs ++;
+            this.id = nbDigitalVideoDiscs;
         }
 
         public int getID(){
