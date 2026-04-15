@@ -1,7 +1,7 @@
-package hust.soict.dsai.aims;
+package hust.soict.globalict.aims;
 
-import hust.soict.dsai.aims.cart.Cart;
-import hust.soict.dsai.aims.disc.DigitalVideoDisc;
+import hust.soict.globalict.aims.cart.Cart;
+import hust.soict.globalict.aims.disc.DigitalVideoDisc;
 
 public class Aims {
     public static void main(String[] args) {
@@ -12,7 +12,7 @@ public class Aims {
         DigitalVideoDisc dvd4 = new DigitalVideoDisc("Avengers", "Action", "Russo Brothers", 143, 29.99f);
         DigitalVideoDisc dvd5 = new DigitalVideoDisc("Batman", "Action", "Christopher Nolan", 140, 22.50f);
 
-        // Add DVD 
+        // Add DVD
         System.out.println("-----ADDING-----");
         myCart.addDigitalVideoDisc(dvd1);
         myCart.addDigitalVideoDisc(dvd2);
@@ -28,7 +28,18 @@ public class Aims {
         System.out.println("-----TEST REMOVE UNKOWN-----");
         DigitalVideoDisc fakeDVD = new DigitalVideoDisc("Fake", "Test", "Unknown", 100, 10f);
         myCart.removeDigitalVideoDisc(fakeDVD);
+        myCart.displayCart();
 
+        System.out.println("\n-----TEST ADD LIST (OVERLOADING)-----");
+        DigitalVideoDisc[] dvdList = {dvd4, dvd5};
+        myCart.addDigitalVideoDisc(dvdList);
+        myCart.displayCart();
+
+        System.out.println("\n-----TEST ADD TWO DVDs (OVERLOADING)-----");
+        DigitalVideoDisc dvd6 = new DigitalVideoDisc("Spider-Man", "Action", "Jon Watts", 133, 21.00f);
+        DigitalVideoDisc dvd7 = new DigitalVideoDisc("Cinderella", "Animation", "Kenneth Branagh", 105, 15.50f);
+
+        myCart.addDigitalVideoDisc(dvd6, dvd7);
         myCart.displayCart();
     }
 }
