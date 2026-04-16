@@ -1,0 +1,46 @@
+Exercise 6.1: 
+a. If users choose "Cancel", the program will display the answer "No".
+- Since the code only check (option == JOptionPane.YES_OPTION ? "Yes" : "No")
+→ Any value that is not YES_OPTION will be considered as "No"
+b. 
+* Case 1: Only two options: "Yes" and "No"
+- Source code:
+import javax.swing.JOptionPane;
+
+public class ChoosingOption {
+    public static void main(String[] args) {
+        int option = JOptionPane.showConfirmDialog(null, "Do you want to change the first class ticket?", "Confirm", JOptionPane.YES_NO_OPTION);
+        JOptionPane.showMessageDialog(null, "You've chosen: " + (option == JOptionPane.YES_OPTION?"Yes":"No"));
+    }
+}
+
+- Explaination: JOptionPane.YES_NO_OPTION removes the Cancel button
+→ Users can only choose Yes or No
+
+* Case 2: Only two options "I do" and "I don't"
+- Source code:
+import javax.swing.JOptionPane;
+
+public class ChoosingOption {
+    public static void main(String[] args) {
+        Object[] options = {"I do", "I don't"};
+
+    int option = JOptionPane.showOptionDialog(
+        null,
+        "Do you want to change the first class ticket?",
+        "Custom Option",
+        JOptionPane.DEFAULT_OPTION,
+        JOptionPane.QUESTION_MESSAGE,
+        null,
+        options,
+        options[0]
+    );
+
+    JOptionPane.showMessageDialog(null, "You've chosen: " + options[option]);
+    }
+}
+
+- Explaination:
++ showOptionDialog allows full customization of button text
++ options array defines the button labels
++ option returns the index (0 → "I do", 1 → "I don't")
