@@ -65,9 +65,9 @@ public class Cart {
         boolean found = false;
         for(int i = 0; i < qtyOrdered; i ++){
             if(myCart[i].getID() == id){
-                System.out.println("Found DVD by ID " + id + ":");
-                System.out.println(myCart[i].getTitle() + "-" + myCart[i].getCategory() + "-" + myCart[i].getDirector() + "-" + myCart[i].getLength() + "-" + myCart[i].getCost() + "$");
+                System.out.println("Successfully found: " + myCart[i].toString());
                 found = true;
+                break;
             }
         }
         if (!found){
@@ -78,10 +78,10 @@ public class Cart {
     public void searchByTitle(String title){
         boolean found = false;
         for(int i = 0; i < qtyOrdered; i ++){
-            if(myCart[i].getTitle().equalsIgnoreCase(title)){
-                System.out.println("Found DVD by title " + title + ":");
-                System.out.println(myCart[i].getTitle() + "-" + myCart[i].getCategory() + "-" + myCart[i].getDirector() + "-" + myCart[i].getLength() + "-" + myCart[i].getCost() + "$");
+            if(myCart[i].isMatch(title)){
+                System.out.println("Successfully found: " + myCart[i].toString());
                 found = true;
+                break;
             }
         }
         if (!found){
