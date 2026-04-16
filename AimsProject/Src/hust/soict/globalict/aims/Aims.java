@@ -17,29 +17,29 @@ public class Aims {
         myCart.addDigitalVideoDisc(dvd1);
         myCart.addDigitalVideoDisc(dvd2);
         myCart.addDigitalVideoDisc(dvd3);
-        myCart.displayCart();
+        myCart.print();
 
         // Remove DVD
         System.out.println("-----REMOVING-----");
-        myCart.removeDigitalVideoDisc(dvd2); // xóa Star Wars
-        myCart.displayCart();
+        myCart.removeDigitalVideoDisc(dvd2);
+        myCart.print();
 
         // Remove unknown DVD
         System.out.println("-----TEST REMOVE UNKOWN-----");
         DigitalVideoDisc fakeDVD = new DigitalVideoDisc("Fake", "Test", "Unknown", 100, 10f);
         myCart.removeDigitalVideoDisc(fakeDVD);
-        myCart.displayCart();
+        myCart.print();
 
         System.out.println("\n-----TEST ADD LIST (OVERLOADING)-----");
         DigitalVideoDisc[] dvdList = {dvd4, dvd5};
         myCart.addDigitalVideoDisc(dvdList);
-        myCart.displayCart();
+        myCart.print();
 
         System.out.println("\n-----TEST ADD TWO DVDs (OVERLOADING)-----");
         DigitalVideoDisc dvd6 = new DigitalVideoDisc("Spider-Man", "Action", "Jon Watts", 133, 21.00f);
         DigitalVideoDisc dvd7 = new DigitalVideoDisc("Cinderella", "Animation", "Kenneth Branagh", 105, 15.50f);
 
         myCart.addDigitalVideoDisc(dvd6, dvd7);
-        myCart.displayCart();
+        myCart.print();
     }
 }
