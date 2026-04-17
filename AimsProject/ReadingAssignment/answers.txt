@@ -1,10 +1,22 @@
-* Question: If you create a constructor method to build a DVD by title then create a constructor method to build a DVD by category. Does JAVA allow you to do this?
+1. Question: If you create a constructor method to build a DVD by title then create a constructor method to build a DVD by category. Does JAVA allow you to do this?
 - Java does not allow to create two constructors like that.
 - Because both constructors have the same parameter type (String), they share the same signature - DigitalVideoDisc(String). Even if the parameter names are different (title or category), Java cannot distinguish between them. This will result in a duplicate constructor error.
 - To use constructor overloading correctly, constructors must differ in the number or types of parameters, not just in parameter names. 
 
-* Question: Is JAVA a Pass by Value or a Pass by Reference programming language?
+2. Question: Is JAVA a Pass by Value or a Pass by Reference programming language?
 - When a variable is passed to a method, Java always passes the copy of the value, not the original variable itself. 
 + For primitive types (int, float, ...), the actual value is copied. 
 + For objects, the value being copied is the reference (memory address) of the object. So the method can modify the objects' contents, but it cannot change the original reference to point to a different object.
 -> Java is a pass-by-value programming language.
+
+* Question: After the call of swap(jungleDVD, cinderellaDVD) why does the title of these two objects still remain?
+- This happens because Java is pass-by-value:
++ When passing jungleDVD and cinderellaDVD into the swap(Object o1, Object o2) method, Java creates copies of the references (the memory addresses) and assigns them to the local variables o1 and o2.
++ Inside the swap method, swapping o1 and o2 only changes where these local copies point to.
++ It does not change the original variables (jungleDVD and cinderellaDVD) in the main method. Therefore, once the method finishes, the original variables still point to their original objects.
+
+* Question: After the call of changeTitle(jungleDVD, cinderellaDVD.getTitle()) why is the title of the JungleDVD changed?
+- The title is changed because the changeTitle method uses the reference to modify the internal state of the object:
++ The parameter dvd in the method is a copy of the reference pointing to the same object as jungleDVD.
++ When dvd.setTitle(title) is called, the program is accessing the actual object in memory and updating its title attribute.
++ Although the subsequent line dvd = new DigitalVideoDisc(oldTitle) creates a new object and assigns it to the local variable dvd, it does not undo the change already made to the original object's attribute.
