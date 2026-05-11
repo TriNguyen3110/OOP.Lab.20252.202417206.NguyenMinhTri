@@ -1,6 +1,6 @@
 package hust.soict.globalict.aims.cart;
 
-import hust.soict.globalict.aims.disc.DigitalVideoDisc;
+import hust.soict.globalict.aims.media.DigitalVideoDisc;
 
 public class Cart {
     public static final int MAX_CAPACITY = 20;
@@ -64,7 +64,7 @@ public class Cart {
     public void searchById(int id){
         boolean found = false;
         for(int i = 0; i < qtyOrdered; i ++){
-            if(myCart[i].getID() == id){
+            if(myCart[i].getId() == id){
                 System.out.println("Successfully found: " + myCart[i].toString());
                 found = true;
                 break;
@@ -104,7 +104,7 @@ public class Cart {
             DigitalVideoDisc dvd = myCart[i];
             // DVD - [Title] - [category] - [Director] - [Length]: [Price]$
             System.out.printf("%d. DVD - %s - %s - %s - %d: %.2f $\n",
-                    dvd.getID(),
+                    dvd.getId(),
                     dvd.getTitle(),
                     dvd.getCategory(),
                     dvd.getDirector(),
