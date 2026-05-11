@@ -15,7 +15,7 @@ public class CartTest {
         cart.addDigitalVideoDisc(dvd2);
         cart.addDigitalVideoDisc(dvd3);
 
-        cart.displayCart();
+        cart.print();
 
         System.out.println("\n--- Testing Search by ID ---");
         cart.searchById(1);
