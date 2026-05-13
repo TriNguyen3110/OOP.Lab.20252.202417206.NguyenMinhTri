@@ -38,7 +38,6 @@ public class DigitalVideoDisc extends Disc implements Playable {
 
     @Override
     public String toString() {
-        // Sửa format thành: ID.DVD - Title - Category - Director - Length: Price $
         return String.format("DVD - %s - %s - %s - %d: %.2f $", getTitle(), getCategory(), getDirector(), getLength(), getCost());
     }
 
