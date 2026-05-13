@@ -36,13 +36,10 @@ public class DigitalVideoDisc extends Disc implements Playable {
         this.setId(nbDigitalVideoDiscs);
     }
 
-    public boolean isMatch(String title){
-        return this.getTitle().equalsIgnoreCase(title);
-    }
-
     @Override
-    public String toString(){
-        return  getId() + ".DVD - " + getTitle() + " - " + getCategory() + " - " + getDirector() + " - " + getLength() + ": " + getCost() + " $";
+    public String toString() {
+        // Sửa format thành: ID.DVD - Title - Category - Director - Length: Price $
+        return String.format("DVD - %s - %s - %s - %d: %.2f $", getTitle(), getCategory(), getDirector(), getLength(), getCost());
     }
 
     @Override
