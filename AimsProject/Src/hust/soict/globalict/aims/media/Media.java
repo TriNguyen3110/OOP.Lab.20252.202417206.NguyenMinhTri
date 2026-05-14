@@ -52,4 +52,16 @@ public abstract class Media {
     public boolean isMatch(String title){
         return this.getTitle().equalsIgnoreCase(title);
     }
+
+    @Override
+    public boolean equals (Object obj){
+        if(this == obj){
+            return true;
+        }
+        if((obj == null) || !(obj instanceof Media)){
+            return false;
+        }
+        Media item = (Media) obj;
+        return this.getTitle().equalsIgnoreCase(item.getTitle());
+    }
 }
