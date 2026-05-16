@@ -30,4 +30,9 @@ public class Book extends Media {
             System.out.println(authorName + " does not exist in the author list.");
         }
     }
+
+    @Override
+    public String toString() {
+        return String.format("Book - %s - %s - Authors: %s: %.2f $", getTitle(), getCategory(), String.join(", ", authors), getCost());
+    }
 }
