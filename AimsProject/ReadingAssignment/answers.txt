@@ -1,3 +1,4 @@
+Lab 2, 3:
 1. Question: If you create a constructor method to build a DVD by title then create a constructor method to build a DVD by category. Does JAVA allow you to do this?
 - Java does not allow to create two constructors like that.
 - Because both constructors have the same parameter type (String), they share the same signature - DigitalVideoDisc(String). Even if the parameter names are different (title or category), Java cannot distinguish between them. This will result in a duplicate constructor error.
@@ -20,3 +21,24 @@
 + The parameter dvd in the method is a copy of the reference pointing to the same object as jungleDVD.
 + When dvd.setTitle(title) is called, the program is accessing the actual object in memory and updating its title attribute.
 + Although the subsequent line dvd = new DigitalVideoDisc(oldTitle) creates a new object and assigns it to the local variable dvd, it does not undo the change already made to the original object's attribute.
+
+Lab 4:
+12. Sort media in the cart
+* Question: What class should implement the Comparable interface?
+- The Media class should implement the Comparable<Media> interface. Since Media is the abstract base class for all items (Book, CD, DVD) and the cart manages a generalized collection of ArrayList<Media>.
+
+* Question: In those classes, how should you implement the compareTo()method be to reflect the ordering that we want?
+- We need to override the public int compareTo(Media other) method inside the Media class. To implement a specific sorting rule (ex: sorting by title, then by cost), the method should be structured as follows:
++ Compare the titles alphabetically using "this.getTitle().compareTo(other.getTitle())".
++ If the result is non-zero, return that result immediately.
++ If the result is zero, resolve the tie by comparing their costs in descending order using "Float.compare(other.getCost(), this.getCost())" and return the outcome.
+
+* Question: Can we have two ordering rules of the item (by title then cost and by cost then title) if we use this Comparable interface approach?
+- The Comparable interface restricts a class to defining exactly one compareTo() method. Consequently, a class can only possess a single, fixed natural ordering. It is impossible to program the compareTo() method to automatically switch between a Title-Cost strategy and a Cost-Title strategy depending on a menu selection.
+
+* Question: Suppose the DVDs has a different ordering rule from the other media types, that is by title, then decreasing length, then cost. How would you modify your code to allow this?
+- Implementation Strategy:
++ Inside DigitalVideoDisc.java, declare public int compareTo(Media other) .
++ Use the instanceof operator to check if the other object is an instance of DigitalVideoDisc.
++ If it is a DVD: Downcast other to DigitalVideoDisc. Perform a three-tier comparison: first by title, then by length (using "Integer.compare(other.getLength(), this.getLength())" to achieve a decreasing order), and finally by cost if a tie persists.
++ If it is not a DVD (ex: comparing a DVD against a Book or a CD): Delegate the behavior back to the parent class by executing "return super.compareTo(other)"; so it falls back to the default media sorting rule.
