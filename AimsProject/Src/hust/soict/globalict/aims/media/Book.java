@@ -33,6 +33,6 @@ public class Book extends Media {
 
     @Override
     public String toString() {
-        return String.format("Book - %s - %s - Authors: %s: %.2f $", getTitle(), getCategory(), String.join(", ", authors), getCost());
+        return String.format("Book - %d - %s - %s - Authors: %s: %.2f $", getId(), getTitle(), getCategory(), String.join(", ", authors), getCost());
     }
 }
