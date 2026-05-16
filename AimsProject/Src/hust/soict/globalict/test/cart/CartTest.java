@@ -1,7 +1,7 @@
 package hust.soict.globalict.test.cart;
 
 import hust.soict.globalict.aims.cart.Cart;
-import hust.soict.globalict.aims.disc.DigitalVideoDisc;
+import hust.soict.globalict.aims.media.DigitalVideoDisc;
 
 public class CartTest {
     public static void main(String[] args) {
@@ -11,9 +11,9 @@ public class CartTest {
         DigitalVideoDisc dvd2 = new DigitalVideoDisc("Star Wars", "Sci-Fi", "George Lucas", 124, 24.95f);
         DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladdin", "Animation", "Guy Ritchie", 90, 18.99f);
 
-        cart.addDigitalVideoDisc(dvd1);
-        cart.addDigitalVideoDisc(dvd2);
-        cart.addDigitalVideoDisc(dvd3);
+        cart.addMedia(dvd1);
+        cart.addMedia(dvd2);
+        cart.addMedia(dvd3);
 
         cart.print();
 
