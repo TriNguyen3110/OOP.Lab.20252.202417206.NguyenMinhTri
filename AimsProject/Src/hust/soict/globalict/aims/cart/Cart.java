@@ -4,6 +4,7 @@ import hust.soict.globalict.aims.media.DigitalVideoDisc;
 import hust.soict.globalict.aims.media.Media;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Cart {
     private ArrayList<Media> itemsOrdered = new ArrayList<Media>();
@@ -64,10 +65,20 @@ public class Cart {
         return total;
     }
 
+    public void sortByTitle(){
+        Collections.sort(itemsOrdered, Media.COMPARE_BY_TITLE_COST);
+        System.out.println("The cart has been sorted by title.");
+    }
+
+    public void sortByCost(){
+        Collections.sort(itemsOrdered, Media.COMPARE_BY_COST_TITLE);
+        System.out.println("The cart has been sorted by cost.");
+    }
+
     public void print() {
         System.out.println("***********************CART***********************");
         System.out.println("Ordered Items:");
-        for (int i = 0; i < itemsOrdered.size(); i++) {
+        for (int i = 0; i < itemsOrdered.size(); i++){
             System.out.printf("%d. %s\n", (i + 1), itemsOrdered.get(i).toString());
         }
         System.out.printf("Total cost: %.2f $\n", totalCost());
