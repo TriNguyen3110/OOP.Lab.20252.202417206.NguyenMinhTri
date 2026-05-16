@@ -35,7 +35,14 @@ public class Aims {
         myCart.addMedia(cd1);
         myCart.addMedia(dvd2);
         myCart.addMedia(book2);
+        myCart.print();
 
+        System.out.println("\n----- TEST SORT BY TITLE THEN COST -----");
+        myCart.sortByTitle();
+        myCart.print();
+
+        System.out.println("\n----- TEST SORT BY COST THEN TITLE -----");
+        myCart.sortByCost();
         myCart.print();
     }
 }
