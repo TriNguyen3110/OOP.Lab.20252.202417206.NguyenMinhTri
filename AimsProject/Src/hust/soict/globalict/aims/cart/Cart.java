@@ -75,6 +75,15 @@ public class Cart {
         System.out.println("The cart has been sorted by cost.");
     }
 
+    public Media search(String title){
+        for(Media media : itemsOrdered){
+            if(media.isMatch(title)){
+                return media;
+            }
+        }
+        return null;
+    }
+
     public void print() {
         System.out.println("***********************CART***********************");
         System.out.println("Ordered Items:");
