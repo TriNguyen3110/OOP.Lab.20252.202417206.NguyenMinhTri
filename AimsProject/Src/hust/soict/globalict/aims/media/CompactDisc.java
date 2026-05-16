@@ -56,6 +56,6 @@ public class CompactDisc extends Disc implements Playable {
 
     @Override
     public String toString() {
-        return String.format("CD - %s - %s - Artist: %s - Director: %s - Length: %d: %.2f $", getTitle(), getCategory(), getArtist(), getDirector(), getLength(), getCost());
+        return String.format("CD - %d - %s - %s - Artist: %s - Director: %s - Length: %d: %.2f $", getId(), getTitle(), getCategory(), getArtist(), getDirector(), getLength(), getCost());
     }
 }
