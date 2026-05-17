@@ -9,6 +9,6 @@ public class MediaComparatorByTitleCost implements Comparator<Media> {
         if(titleCompare != 0){
             return titleCompare;
         }
-        return Float.compare(m1.getCost(), m2.getCost());
+        return Float.compare(m2.getCost(), m1.getCost());
     }
 }
