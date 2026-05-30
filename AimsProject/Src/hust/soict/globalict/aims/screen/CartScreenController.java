@@ -96,7 +96,7 @@ public class CartScreenController implements Initializable {
     }
 
     @FXML
-    void btnRemovePressed(ActionEvent event) {
+    void btnRemovePressed(ActionEvent event) { // Action for "Remove" button
         Media media = tblMedia.getSelectionModel().getSelectedItem();
 
         if (media != null) {
@@ -104,7 +104,7 @@ public class CartScreenController implements Initializable {
         }
     }
 
-    void showFilteredMedia(String filter) {
+    void showFilteredMedia(String filter) { // Action for search method by ID/Title
         filteredData.setPredicate(new Predicate<Media>() {
             @Override
             public boolean test(Media media) {
@@ -122,5 +122,24 @@ public class CartScreenController implements Initializable {
                 return true;
             }
         });
+    }
+
+    @FXML
+    void btnPlayPressed(ActionEvent event){
+        Media media = tblMedia.getSelectionModel().getSelectedItem();
+
+        if(media instanceof Playable){
+            Playable curMedia = (Playable) media;
+
+            curMedia.play();
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION); // Dialog for displaying notification
+
+            alert.setTitle("Playing Media");
+            alert.setHeaderText(null);
+            alert.setContentText("Now playing: " + media.getTitle());
+
+            alert.showAndWait();
+        }
     }
 }

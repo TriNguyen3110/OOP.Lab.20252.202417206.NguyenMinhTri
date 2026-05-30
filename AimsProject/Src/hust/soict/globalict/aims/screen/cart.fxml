@@ -73,7 +73,7 @@
                 </TableView>
                 <ButtonBar prefHeight="40.0" prefWidth="200.0">
                     <buttons>
-                        <Button fx:id="btnPlay" mnemonicParsing="false" text="Play" />
+                        <Button fx:id="btnPlay" mnemonicParsing="false" onAction="#btnPlayPressed" text="Play" />
                         <Button fx:id="btnRemove" layoutX="949.0" layoutY="18.0" mnemonicParsing="false" onAction="#btnRemovePressed" text="Remove" />
                     </buttons>
                 </ButtonBar>

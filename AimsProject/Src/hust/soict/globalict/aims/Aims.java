@@ -13,23 +13,14 @@ public class Aims {
     private static Cart cart = new Cart();
 
     public static void main(String[] args) {
-        // 1. Setup initial sample items into the store
         initSetup();
 
-        // 2. Add some items from the store to the cart to test the TableView (Figure 41)
-        if (store.getItemsInStore().size() >= 7) {
-            cart.addMedia(store.getItemsInStore().get(0)); // Adds "The Lion King" (DVD)
-            cart.addMedia(store.getItemsInStore().get(3)); // Adds "Java Programming" (Book)
-            cart.addMedia(store.getItemsInStore().get(6)); // Adds "Beethoven Symphony No. 9" (CD)
-        } else {
-            // Fallback in case items are not properly loaded
-            DigitalVideoDisc defaultDvd = new DigitalVideoDisc("The Lion King", "Animation", "Roger Allers", 87, 19.95f);
-            cart.addMedia(defaultDvd);
-        }
+        cart.addMedia(store.getItemsInStore().get(0));
+        cart.addMedia(store.getItemsInStore().get(3));
+        cart.addMedia(store.getItemsInStore().get(6));
 
         System.out.println("Launching AIMS Graphical User Interface (Cart Screen)...");
 
-        // 3. Open CartScreen directly to view and test the layout/interactions
         new CartScreen(cart);
     }
 
