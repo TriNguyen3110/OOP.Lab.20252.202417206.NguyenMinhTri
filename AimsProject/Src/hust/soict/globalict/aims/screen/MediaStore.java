@@ -6,6 +6,8 @@ import hust.soict.globalict.aims.media.Playable;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MediaStore extends JPanel {
     private Media media;
@@ -23,10 +25,29 @@ public class MediaStore extends JPanel {
         JPanel container = new JPanel();
         container.setLayout(new FlowLayout(FlowLayout.CENTER));
 
-        container.add(new JButton("Add to cart"));
+        JButton btnAddToCart = new JButton("Add to cart"); // "Add to cart" Button
+        btnAddToCart.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cart.addMedia(media);
+                JOptionPane.showMessageDialog(null, "Add to cart!");
+            }
+        });
+        container.add(btnAddToCart);
 
-        if (media instanceof Playable) {
-            container.add(new JButton("Play"));
+        if (media instanceof Playable) { // "Play" button
+            JButton btnPlay = new JButton("Play");
+            btnPlay.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    Playable curMedia = (Playable) media;
+
+                    curMedia.play();
+
+                    JOptionPane.showMessageDialog(null, "Playing: " + media.getTitle());
+                }
+            });
+            container.add(btnPlay);
         }
 
         this.add(Box.createVerticalGlue());
