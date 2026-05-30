@@ -50,6 +50,9 @@ public class CartScreenController implements Initializable {
     @FXML
     private RadioButton radioBtnFilterTitle;
 
+    @FXML
+    private Label lblTotalCost;
+
     public CartScreenController(Cart cart) {
         this.cart = cart;
     }
@@ -82,6 +85,8 @@ public class CartScreenController implements Initializable {
                 showFilteredMedia(newValue);
             }
         });
+
+        updateTotalCost();
     }
 
     void updateButtonBar(Media media) {
@@ -101,6 +106,7 @@ public class CartScreenController implements Initializable {
 
         if (media != null) {
             cart.removeMedia(media);
+            updateTotalCost(); // Update the total cost after removing media
         }
     }
 
@@ -125,7 +131,7 @@ public class CartScreenController implements Initializable {
     }
 
     @FXML
-    void btnPlayPressed(ActionEvent event){
+    void btnPlayPressed(ActionEvent event){ // Action for "Play" button
         Media media = tblMedia.getSelectionModel().getSelectedItem();
 
         if(media instanceof Playable){
@@ -141,5 +147,15 @@ public class CartScreenController implements Initializable {
 
             alert.showAndWait();
         }
+    }
+
+    void updateTotalCost(){ // The total cost Label
+        float s = 0;
+
+        for(Media media : cart.getItemsOrdered()){
+            s += media.getCost();
+        }
+
+        lblTotalCost.setText(String.format("%.2f $", s));
     }
 }
