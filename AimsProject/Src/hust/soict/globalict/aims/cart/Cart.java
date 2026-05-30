@@ -15,23 +15,23 @@ public class Cart {
     }
 
     public void addMedia(Media media){
-        if(!itemsOrdered.contains(media)){
-            itemsOrdered.add(media);
-            System.out.println("The media " + media.getTitle() + " has been added to the cart.");
+        if(media == null){
+            throw new IllegalArgumentException("Media cannot be null!");
         }
-        else{
-            System.out.println("The media " + media.getTitle() + " is already in the cart.");
+
+        if(itemsOrdered.contains(media)){
+            throw new IllegalArgumentException("Media already exists in cart!");
         }
+
+        itemsOrdered.add(media);
     }
 
     public void removeMedia(Media media){
-        if(itemsOrdered.contains(media)){
-            itemsOrdered.remove((media));
-            System.out.println("The media " + media.getTitle() + " has been removed out of the cart.");
+        if(!itemsOrdered.contains(media)){
+            throw new IllegalArgumentException("Media is not in cart!");
         }
-        else{
-            System.out.println("The media " + media.getTitle() + " is not in the cart.");
-        }
+
+        itemsOrdered.remove(media);
     }
 
     public void searchById(int id){

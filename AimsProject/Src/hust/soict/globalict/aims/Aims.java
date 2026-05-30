@@ -2,7 +2,7 @@ package hust.soict.globalict.aims;
 
 import hust.soict.globalict.aims.cart.Cart;
 import hust.soict.globalict.aims.media.*;
-import hust.soict.globalict.aims.screen.CartScreen; // Import CartScreen instead of StoreScreen for testing
+import hust.soict.globalict.aims.screen.CartScreen;
 import hust.soict.globalict.aims.screen.StoreScreen;
 import hust.soict.globalict.aims.store.Store;
 import javafx.application.Platform;

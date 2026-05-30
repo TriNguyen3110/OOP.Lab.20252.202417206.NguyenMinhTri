@@ -17,23 +17,23 @@ public class CompactDisc extends Disc implements Playable {
     }
 
     public void addTrack(Track inputTrack){
+        if(inputTrack == null){
+            throw new IllegalArgumentException("Track cannot be null!");
+        }
+
         if(tracks.contains(inputTrack)){
-            System.out.println("Track " + inputTrack.getTitle() + " is already in the list.");
+            throw new IllegalArgumentException("Track already exists!");
         }
-        else{
-            tracks.add(inputTrack);
-            System.out.println("Track " + inputTrack.getTitle() + " has been added to the list.");
-        }
+
+        tracks.add(inputTrack);
     }
 
     public void removeTrack(Track inputTrack){
-        if(tracks.contains(inputTrack)){
-            tracks.remove(inputTrack);
-            System.out.println("Track " + inputTrack.getTitle() + " has been removed out of the list.");
+        if(!tracks.contains(inputTrack)){
+            throw new IllegalArgumentException("Track does not exist!");
         }
-        else{
-            System.out.println("Track " + inputTrack.getTitle() + " does not exist in the list.");
-        }
+
+        tracks.remove(inputTrack);
     }
 
     @Override
@@ -47,6 +47,10 @@ public class CompactDisc extends Disc implements Playable {
 
     @Override
     public void play(){
+        if(this.getLength() <= 0){
+            throw new IllegalArgumentException("CD length is non-positive!");
+        }
+
         System.out.println("Playing CD: " + this.getTitle() + " by " + this.getArtist());
         System.out.println("CD length: " + this.getLength());
         for(Track track : tracks){

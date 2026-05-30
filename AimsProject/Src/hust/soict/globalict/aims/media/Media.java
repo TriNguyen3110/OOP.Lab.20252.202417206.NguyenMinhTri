@@ -12,6 +12,14 @@ public abstract class Media {
     public static final Comparator<Media> COMPARE_BY_COST_TITLE = new MediaComparatorByCostTitle();
 
     public Media(int id, String title, String category, float cost) {
+        if (title == null || title.trim().isEmpty()) {
+            throw new IllegalArgumentException("Title cannot be empty!");
+        }
+
+        if (cost < 0) {
+            throw new IllegalArgumentException("Cost cannot be negative!");
+        }
+
         this.id = id;
         this.title = title;
         this.category = category;
@@ -23,6 +31,14 @@ public abstract class Media {
     }
 
     public Media(String title, String category, float cost) {
+        if (title == null || title.trim().isEmpty()) {
+            throw new IllegalArgumentException("Title cannot be empty!");
+        }
+
+        if (cost < 0) {
+            throw new IllegalArgumentException("Cost cannot be negative!");
+        }
+
         this.title = title;
         this.category = category;
         this.cost = cost;
@@ -49,6 +65,9 @@ public abstract class Media {
     }
 
     public void setTitle(String title) {
+        if(title == null || title.trim().isEmpty()){
+            throw new IllegalArgumentException("Title cannot be empty!");
+        }
         this.title = title;
     }
 
@@ -57,22 +76,35 @@ public abstract class Media {
     }
 
     public void setCost(float cost) {
+        if(cost < 0){
+            throw new IllegalArgumentException("Cost cannot be negative!");
+        }
         this.cost = cost;
     }
 
     public boolean isMatch(String title){
+        if(title == null){
+            return false;
+        }
         return this.getTitle().equalsIgnoreCase(title);
     }
 
     @Override
-    public boolean equals (Object obj){
+    public boolean equals(Object obj){
         if(this == obj){
             return true;
         }
-        if((obj == null) || !(obj instanceof Media)){
+
+        if(obj == null || !(obj instanceof Media)){
             return false;
         }
+
         Media item = (Media) obj;
+
+        if(this.getTitle() == null || item.getTitle() == null){
+            return false;
+        }
+
         return this.getTitle().equalsIgnoreCase(item.getTitle());
     }
 }

@@ -16,23 +16,23 @@ public class Book extends Media {
     }
 
     public void addAuthor(String authorName){
-        if(!authors.contains(authorName)){
-            authors.add(authorName);
-            System.out.println(authorName + " has been added to the author list.");
+        if(authorName == null || authorName.trim().isEmpty()){
+            throw new IllegalArgumentException("Author name cannot be empty!");
         }
-        else{
-            System.out.println(authorName + " already exists in the author list.");
+
+        if(authors.contains(authorName)){
+            throw new IllegalArgumentException(authorName + " already exists!");
         }
+
+        authors.add(authorName);
     }
 
     public void removeAuthor(String authorName){
-        if(authors.contains(authorName)){
-            authors.remove(authorName);
-            System.out.println(authorName + " has been removed out of the author list.");
+        if(!authors.contains(authorName)){
+            throw new IllegalArgumentException(authorName + " does not exist!");
         }
-        else{
-            System.out.println(authorName + " does not exist in the author list.");
-        }
+
+        authors.remove(authorName);
     }
 
     @Override

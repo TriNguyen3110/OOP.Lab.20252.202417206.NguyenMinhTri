@@ -7,6 +7,9 @@ public class Track implements Playable {
     private int length;
 
     public Track(String title, int length) {
+        if(length <= 0){
+            throw new IllegalArgumentException("Track length must be positive!");
+        }
         this.title = title;
         this.length = length;
     }
