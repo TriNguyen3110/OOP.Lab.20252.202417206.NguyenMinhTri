@@ -5,22 +5,23 @@ import hust.soict.globalict.aims.media.Media;
 
 import hust.soict.globalict.aims.media.Playable;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import javafx.beans.value.ChangeListener;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 
 public class CartScreenController implements Initializable {
     private Cart cart;
+    private FilteredList<Media> filteredData;
 
     @FXML
     private TableView<Media> tblMedia;
@@ -40,6 +41,15 @@ public class CartScreenController implements Initializable {
     @FXML
     private Button btnRemove;
 
+    @FXML
+    private TextField tfFilter;
+
+    @FXML
+    private RadioButton radioBtnFilterId;
+
+    @FXML
+    private RadioButton radioBtnFilterTitle;
+
     public CartScreenController(Cart cart) {
         this.cart = cart;
     }
@@ -50,7 +60,9 @@ public class CartScreenController implements Initializable {
         colMediaCategory.setCellValueFactory(new PropertyValueFactory<>("category"));
         colMediaCost.setCellValueFactory(new PropertyValueFactory<>("cost"));
 
-        tblMedia.setItems(cart.getItemsOrdered());
+        filteredData = new FilteredList<>(cart.getItemsOrdered(), media -> true); // Display all medias at first
+
+        tblMedia.setItems(filteredData);
 
         btnPlay.setVisible(false);
         btnRemove.setVisible(false);
@@ -61,6 +73,13 @@ public class CartScreenController implements Initializable {
                 if (newValue != null) {
                     updateButtonBar(newValue);
                 }
+            }
+        });
+
+        tfFilter.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                showFilteredMedia(newValue);
             }
         });
     }
@@ -83,5 +102,25 @@ public class CartScreenController implements Initializable {
         if (media != null) {
             cart.removeMedia(media);
         }
+    }
+
+    void showFilteredMedia(String filter) {
+        filteredData.setPredicate(new Predicate<Media>() {
+            @Override
+            public boolean test(Media media) {
+                if (filter == null || filter.isEmpty()) {
+                    return true;
+                }
+
+                if (radioBtnFilterId.isSelected()) {
+                    return String.valueOf(media.getId()).contains(filter);
+                }
+
+                if (radioBtnFilterTitle.isSelected()) {
+                    return media.getTitle().toLowerCase().contains(filter.toLowerCase());
+                }
+                return true;
+            }
+        });
     }
 }
