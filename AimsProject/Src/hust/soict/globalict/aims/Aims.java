@@ -2,23 +2,35 @@ package hust.soict.globalict.aims;
 
 import hust.soict.globalict.aims.cart.Cart;
 import hust.soict.globalict.aims.media.*;
-import hust.soict.globalict.aims.screen.StoreScreen;
+import hust.soict.globalict.aims.screen.CartScreen; // Import CartScreen instead of StoreScreen for testing
 import hust.soict.globalict.aims.store.Store;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Optional;
-import java.util.Scanner;
 
 public class Aims {
     private static Store store = new Store();
     private static Cart cart = new Cart();
 
     public static void main(String[] args) {
+        // 1. Setup initial sample items into the store
         initSetup();
 
-        System.out.println("Launching AIMS Graphical User Interface...");
-        new StoreScreen(store, cart);
+        // 2. Add some items from the store to the cart to test the TableView (Figure 41)
+        if (store.getItemsInStore().size() >= 7) {
+            cart.addMedia(store.getItemsInStore().get(0)); // Adds "The Lion King" (DVD)
+            cart.addMedia(store.getItemsInStore().get(3)); // Adds "Java Programming" (Book)
+            cart.addMedia(store.getItemsInStore().get(6)); // Adds "Beethoven Symphony No. 9" (CD)
+        } else {
+            // Fallback in case items are not properly loaded
+            DigitalVideoDisc defaultDvd = new DigitalVideoDisc("The Lion King", "Animation", "Roger Allers", 87, 19.95f);
+            cart.addMedia(defaultDvd);
+        }
+
+        System.out.println("Launching AIMS Graphical User Interface (Cart Screen)...");
+
+        // 3. Open CartScreen directly to view and test the layout/interactions
+        new CartScreen(cart);
     }
 
     public static void initSetup(){
