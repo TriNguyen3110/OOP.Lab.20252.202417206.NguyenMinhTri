@@ -15,6 +15,9 @@ public class CompactDisc extends Disc implements Playable {
 
     public CompactDisc(String title, String category, String director, int length, float cost, String artist) {
         super(title, category, director, length, cost);
+        if (artist == null || artist.trim().isEmpty()) {
+            throw new IllegalArgumentException("ERROR: Artist cannot be empty!");
+        }
         this.artist = artist;
     }
 

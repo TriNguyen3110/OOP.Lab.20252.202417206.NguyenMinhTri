@@ -7,6 +7,9 @@ public class DigitalVideoDisc extends Disc implements Playable {
 
     public DigitalVideoDisc(String title, String category, String director, int length, float cost){
         super(title, category, director, length, cost);
+        if (length <= 0) {
+            throw new IllegalArgumentException("ERROR: DVD length must be positive!");
+        }
         updateID();
     }
 
