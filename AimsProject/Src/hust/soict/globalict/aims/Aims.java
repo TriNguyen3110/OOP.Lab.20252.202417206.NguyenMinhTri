@@ -3,7 +3,9 @@ package hust.soict.globalict.aims;
 import hust.soict.globalict.aims.cart.Cart;
 import hust.soict.globalict.aims.media.*;
 import hust.soict.globalict.aims.screen.CartScreen; // Import CartScreen instead of StoreScreen for testing
+import hust.soict.globalict.aims.screen.StoreScreen;
 import hust.soict.globalict.aims.store.Store;
+import javafx.application.Platform;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,15 +15,17 @@ public class Aims {
     private static Cart cart = new Cart();
 
     public static void main(String[] args) {
+        Platform.startup(() -> {});
+
         initSetup();
 
         cart.addMedia(store.getItemsInStore().get(0));
         cart.addMedia(store.getItemsInStore().get(3));
         cart.addMedia(store.getItemsInStore().get(6));
 
-        System.out.println("Launching AIMS Graphical User Interface (Cart Screen)...");
+        System.out.println("Launching AIMS GUI...");
 
-        new CartScreen(cart);
+        new StoreScreen(store, cart);
     }
 
     public static void initSetup(){

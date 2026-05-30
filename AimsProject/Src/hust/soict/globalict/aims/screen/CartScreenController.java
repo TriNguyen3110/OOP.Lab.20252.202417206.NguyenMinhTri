@@ -5,6 +5,7 @@ import hust.soict.globalict.aims.media.Media;
 
 import hust.soict.globalict.aims.media.Playable;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ListChangeListener;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -83,6 +84,18 @@ public class CartScreenController implements Initializable {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 showFilteredMedia(newValue);
+            }
+        });
+
+        cart.getItemsOrdered().addListener(new ListChangeListener<Media>() { // Update total cost continuously
+            @Override
+            public void onChanged(Change<? extends Media> change) {
+                javafx.application.Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        updateTotalCost();
+                    }
+                });
             }
         });
 
