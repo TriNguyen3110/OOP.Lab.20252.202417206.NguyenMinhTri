@@ -1,13 +1,18 @@
 package hust.soict.globalict.aims.cart;
 
-import hust.soict.globalict.aims.media.DigitalVideoDisc;
 import hust.soict.globalict.aims.media.Media;
 
-import java.util.ArrayList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.util.Collections;
 
 public class Cart {
-    private ArrayList<Media> itemsOrdered = new ArrayList<Media>();
+    private ObservableList<Media> itemsOrdered = FXCollections.observableArrayList();
+
+    public ObservableList<Media> getItemsOrdered() {
+        return this.itemsOrdered;
+    }
 
     public void addMedia(Media media){
         if(!itemsOrdered.contains(media)){
@@ -15,7 +20,7 @@ public class Cart {
             System.out.println("The media " + media.getTitle() + " has been added to the cart.");
         }
         else{
-            System.out.println("The media " + media.getTitle() + " is already in the .");
+            System.out.println("The media " + media.getTitle() + " is already in the cart.");
         }
     }
 
@@ -45,16 +50,16 @@ public class Cart {
 
     public void searchByTitle(String title){
         boolean found = false;
-       for(Media media : itemsOrdered){
-           if(media.isMatch(title)){
-               System.out.println("Successfully found: " + media.toString());
-               found = true;
-               break;
-           }
-       }
-       if(!found){
-           System.out.println("No media found with title: " + title);
-       }
+        for(Media media : itemsOrdered){
+            if(media.isMatch(title)){
+                System.out.println("Successfully found: " + media.toString());
+                found = true;
+                break;
+            }
+        }
+        if(!found){
+            System.out.println("No media found with title: " + title);
+        }
     }
 
     public float totalCost(){
