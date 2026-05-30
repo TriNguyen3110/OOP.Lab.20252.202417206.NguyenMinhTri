@@ -75,6 +75,8 @@ public class AddCompactDiscToStoreScreen extends AddItemToStoreScreen {
                     tfCost.setText("");
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(null, "Length and Cost must be valid numbers!", "Input Error", JOptionPane.ERROR_MESSAGE);
+                } catch (IllegalArgumentException ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Validation Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });

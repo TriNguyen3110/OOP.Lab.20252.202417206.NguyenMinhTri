@@ -42,9 +42,13 @@ public class MediaStore extends JPanel {
                 public void actionPerformed(ActionEvent e) {
                     Playable curMedia = (Playable) media;
 
-                    curMedia.play();
+                    try {
+                        curMedia.play();
 
-                    JOptionPane.showMessageDialog(null, "Playing: " + media.getTitle());
+                        JOptionPane.showMessageDialog(null, "Playing: " + media.getTitle(), "Media Player", JOptionPane.INFORMATION_MESSAGE);
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
             });
             container.add(btnPlay);

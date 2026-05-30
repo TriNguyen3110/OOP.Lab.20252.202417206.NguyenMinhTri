@@ -77,6 +77,10 @@ public class CartScreenController implements Initializable {
                 if (newValue != null) {
                     updateButtonBar(newValue);
                 }
+                else {
+                    btnPlay.setVisible(false);
+                    btnRemove.setVisible(false);
+                }
             }
         });
 
@@ -144,21 +148,28 @@ public class CartScreenController implements Initializable {
     }
 
     @FXML
-    void btnPlayPressed(ActionEvent event){ // Action for "Play" button
+    void btnPlayPressed(ActionEvent event) { // Action for "Play" button
         Media media = tblMedia.getSelectionModel().getSelectedItem();
 
-        if(media instanceof Playable){
+        if (media instanceof Playable) {
             Playable curMedia = (Playable) media;
 
-            curMedia.play();
+            try {
+                curMedia.play();
 
-            Alert alert = new Alert(Alert.AlertType.INFORMATION); // Dialog for displaying notification
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Playing Media");
+                alert.setHeaderText(null);
+                alert.setContentText("Now playing: " + media.getTitle());
+                alert.showAndWait();
 
-            alert.setTitle("Playing Media");
-            alert.setHeaderText(null);
-            alert.setContentText("Now playing: " + media.getTitle());
-
-            alert.showAndWait();
+            } catch (Exception e) {
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                errorAlert.setTitle("Player Error");
+                errorAlert.setHeaderText("Cannot play this media");
+                errorAlert.setContentText(e.getMessage());
+                errorAlert.showAndWait();
+            }
         }
     }
 
@@ -182,5 +193,11 @@ public class CartScreenController implements Initializable {
         alert.setContentText("Order placed successfully");
 
         alert.showAndWait();
+        if (cart.getItemsOrdered() != null) {
+            cart.getItemsOrdered().clear();
+        }
+        tblMedia.getSelectionModel().clearSelection();
+        btnPlay.setVisible(false);
+        btnRemove.setVisible(false);
     }
 }

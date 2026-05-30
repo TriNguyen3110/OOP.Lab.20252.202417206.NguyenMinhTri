@@ -19,10 +19,6 @@ public class Aims {
 
         initSetup();
 
-        cart.addMedia(store.getItemsInStore().get(0));
-        cart.addMedia(store.getItemsInStore().get(3));
-        cart.addMedia(store.getItemsInStore().get(6));
-
         System.out.println("Launching AIMS GUI...");
 
         new StoreScreen(store, cart);

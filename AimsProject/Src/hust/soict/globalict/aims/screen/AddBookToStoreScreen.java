@@ -58,6 +58,8 @@ public class AddBookToStoreScreen extends AddItemToStoreScreen {
 
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(null, "Cost must be a valid number!", "Input Error", JOptionPane.ERROR_MESSAGE);
+                } catch (IllegalArgumentException ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Validation Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });

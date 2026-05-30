@@ -53,7 +53,6 @@ public class AddDigitalVideoDiscToStoreScreen extends AddItemToStoreScreen {
                 String director = tfDirector.getText();
                 try {
                     int length = Integer.parseInt(tfLength.getText());
-
                     float cost = Float.parseFloat(tfCost.getText());
 
                     DigitalVideoDisc dvd = new DigitalVideoDisc(title, category, director, length, cost);
@@ -69,6 +68,9 @@ public class AddDigitalVideoDiscToStoreScreen extends AddItemToStoreScreen {
                     tfCost.setText("");
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(null, "Length and Cost must be valid numbers!", "Input Error", JOptionPane.ERROR_MESSAGE);
+                } catch (IllegalArgumentException ex) {
+                    // Bắt lỗi logic âm quăng ra từ hệ thống
+                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Validation Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
