@@ -5,6 +5,7 @@ import hust.soict.globalict.aims.media.Media;
 
 import hust.soict.globalict.aims.media.Playable;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
@@ -72,6 +73,15 @@ public class CartScreenController implements Initializable {
         }
         else {
             btnPlay.setVisible(false);
+        }
+    }
+
+    @FXML
+    void btnRemovePressed(ActionEvent event) {
+        Media media = tblMedia.getSelectionModel().getSelectedItem();
+
+        if (media != null) {
+            cart.removeMedia(media);
         }
     }
 }
