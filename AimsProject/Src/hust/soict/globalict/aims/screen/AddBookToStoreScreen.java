@@ -57,7 +57,7 @@ public class AddBookToStoreScreen extends AddItemToStoreScreen {
                     tfCost.setText("");
 
                 } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(null, "Cost phải là một số hợp lệ!", "Lỗi nhập liệu", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Cost must be a valid number!", "Input Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });

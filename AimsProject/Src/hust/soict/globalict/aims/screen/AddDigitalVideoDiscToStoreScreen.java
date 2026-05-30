@@ -68,7 +68,7 @@ public class AddDigitalVideoDiscToStoreScreen extends AddItemToStoreScreen {
                     tfLength.setText("");
                     tfCost.setText("");
                 } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(null, "Length và Cost phải là số hợp lệ!", "Lỗi nhập liệu", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Length and Cost must be valid numbers!", "Input Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
