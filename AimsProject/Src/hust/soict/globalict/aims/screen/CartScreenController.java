@@ -158,4 +158,16 @@ public class CartScreenController implements Initializable {
 
         lblTotalCost.setText(String.format("%.2f $", s));
     }
+
+    @FXML
+    void btnPlaceOrderPressed(ActionEvent event){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+        alert.setTitle("Order");
+        alert.setHeaderText(null);
+
+        alert.setContentText("Order placed successfully");
+
+        alert.showAndWait();
+    }
 }
